@@ -1,0 +1,16 @@
+description: >
+  Stop Android instance on Genymotion Cloud SaaS
+parameters:
+  instance_uuid:
+    type: string
+    default: "$INSTANCE_UUID"
+    description: Instance UUID you want to stop.
+steps:
+  - run:
+      name: Stop Instance
+      command: |
+          gmsaas instances stop << parameters.instance_uuid >>
+
+          echo "Print gmsaas instances list:"
+          gmsaas instances list
+      when: always

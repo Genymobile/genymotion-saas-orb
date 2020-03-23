@@ -1,0 +1,19 @@
+description: >
+  Connect Android instance through ABD
+parameters:
+  adb_serial_port:
+    type: string
+    default: ""
+
+steps:
+  - run:
+      name: Connect Android instance through ABD
+      command: |
+        if [ -z "<< parameters.adb_serial_port >>" ]; then
+          # Connect Android instance with a random port
+          gmsaas instances adbconnect $INSTANCE_UUID
+
+        else
+          # Connect Android instance with the specified port
+          gmsaas instances adbconnect $INSTANCE_UUID --adb-serial-port << parameters.adb_serial_port >>
+        fi

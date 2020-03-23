@@ -1,0 +1,29 @@
+description: >
+  Download gmsaas cli and authentificate the user
+parameters:
+  email:
+    type: string
+    default: ""
+    description: "Email of your Genymotion Cloud SaaS account"
+  password:
+    type: string
+    default: ""
+    description: "Password of your Genymotion Cloud SaaS account"
+steps:
+  - run:
+      name: Install gmsaas cli
+      command: |
+        # Update distrib and install pip3
+        sudo apt update
+        sudo apt-get install python3-pip
+
+        # Install Genymotion Cloud SaaS cli
+        sudo pip3 install gmsaas
+  - run:
+      name: Configure gmsaas
+      command: |
+        export GMSAAS_USER_AGENT_EXTRA_DATA=circleci
+        gmsaas config set android-sdk-path $ANDROID_HOME
+  - run:
+      name: Authentificate
+      command: gmsaas auth login << parameters.email >> << parameters.password >>

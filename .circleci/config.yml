@@ -3,7 +3,7 @@ version: 2.1
 # add your orb below, to be used in integration tests (note: a @dev:alpha
 # release must exist.);
 orbs:
-  <orb-name>: <orb-namespace>/<orb-name>@dev:alpha
+  genymotion-saas: genymotion/genymotion-saas@dev:alpha
   orb-tools: circleci/orb-tools@9.0
 
 # Pipeline parameters
@@ -25,10 +25,28 @@ jobs:
   # Rename this job and add more as needed.
   #
   integration-test-1:
-    executor: orb-tools/ubuntu
+    executor: genymotion-saas/default
     steps:
       - checkout
-    # - your-orb/your-orb-command
+      - genymotion-saas/setup:
+          email: "${GMCLOUD_SAAS_EMAIL}"
+          password: "${GMCLOUD_SAAS_PASSWORD}"
+      - genymotion-saas/start-instance:
+          recipe_uuid: "f34de94f-1e85-4d61-9b0d-c47968bc156c"
+      - genymotion-saas/stop-instance:
+          instance_uuid: "$INSTANCE_UUID"
+
+  integration-test-2:
+    executor: genymotion-saas/default
+    steps:
+      - checkout
+      - genymotion-saas/setup:
+          email: "${GMCLOUD_SAAS_EMAIL}"
+          password: "${GMCLOUD_SAAS_PASSWORD}"
+      - genymotion-saas/start-instance:
+          recipe_uuid: "f34de94f-1e85-4d61-9b0d-c47968bc156c"
+      - genymotion-saas/stop-instance:
+          instance_uuid: "$INSTANCE_UUID"
 
 workflows:
   # This `lint-pack_validate_publish-dev` workflow will run on any commit.
@@ -49,7 +67,7 @@ workflows:
       # store CIRCLE_TOKEN as a project env var or Contexts resource
       # if using Contexts, add your context below
       - orb-tools/publish-dev:
-          orb-name: <orb-namespace>/<orb-name>
+          orb-name: genymotion/genymotion-saas
           requires:
             - orb-tools/pack
 
@@ -73,6 +91,7 @@ workflows:
 
       # an example job
       - integration-test-1
+      - integration-test-2
 
       # publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
@@ -81,13 +100,14 @@ workflows:
       # be skipped.
       # e.g. [semver:patch] will cause a patch version to be published.
       - orb-tools/dev-promote-prod-from-commit-subject:
-          orb-name: <orb-namespace>/<orb-name>
+          orb-name: genymotion/genymotion-saas
 
           add-pr-comment: false
           fail-if-semver-not-indicated: true
           publish-version-tag: false
           requires:
             - integration-test-1
+            - integration-test-2
           filters:
             branches:
               only: master

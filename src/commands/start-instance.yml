@@ -1,0 +1,19 @@
+description: >
+  Start Android instance on Genymotion Cloud SaaS
+parameters:
+  recipe_uuid:
+    type: string
+    default: ""
+    description: recipe UUID
+
+steps:
+  - run:
+      name: Start Android instance
+      command: |
+        if [ -z "<< parameters.recipe_uuid >>" ]; then
+          echo "Please set a recipe uuid"
+          exit 1
+        else
+          INSTANCE_UUID=$(gmsaas instances start << parameters.recipe_uuid >> CircleCI-device-$CIRCLE_BUILD_NUM )
+          echo "export INSTANCE_UUID=$INSTANCE_UUID" >> $BASH_ENV
+        fi
