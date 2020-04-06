@@ -6,6 +6,10 @@ parameters:
     default: ""
     description: recipe UUID
 
+  adb_serial_port:
+    type: string
+    default: ""
+
 steps:
   - run:
       name: Start Android instance
@@ -16,4 +20,13 @@ steps:
         else
           INSTANCE_UUID=$(gmsaas instances start << parameters.recipe_uuid >> CircleCI-device-$CIRCLE_BUILD_NUM )
           echo "export INSTANCE_UUID=$INSTANCE_UUID" >> $BASH_ENV
+        fi
+
+        if [ -z "<< parameters.adb_serial_port >>" ]; then
+          # Connect Android instance with a random port
+          gmsaas instances adbconnect $INSTANCE_UUID
+
+        else
+          # Connect Android instance with the specified port
+          gmsaas instances adbconnect $INSTANCE_UUID --adb-serial-port << parameters.adb_serial_port >>
         fi
