@@ -1,5 +1,5 @@
 description: >
-  Download gmsaas cli and authentificate the user
+  Download gmsaas cli and authenticate the user.
 parameters:
   email:
     type: string
@@ -25,5 +25,5 @@ steps:
         export GMSAAS_USER_AGENT_EXTRA_DATA=circleci
         gmsaas config set android-sdk-path $ANDROID_HOME
   - run:
-      name: Authentificate
+      name: Authenticate
       command: gmsaas auth login << parameters.email >> << parameters.password >>

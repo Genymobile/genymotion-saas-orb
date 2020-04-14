@@ -4,7 +4,7 @@ parameters:
   instance_uuid:
     type: string
     default: "$INSTANCE_UUID"
-    description: Instance UUID you want to stop.
+    description: Instance to stop. The ID of the instance to stop is automatically retrieved. No need to set manually.
 steps:
   - run:
       name: Stop Instance

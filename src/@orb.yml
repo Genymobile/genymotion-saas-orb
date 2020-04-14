@@ -1,8 +1,7 @@
 version: 2.1
 
 description: >
-  Install and configure the Genymotion Cloud SaaS command-line interface (gmsaas).
-  Start instances, connect through adb and stop instances on Genymotion Cloud SaaS platform.
+  Start Genymotion Android virtual device, connect through ADB and stop device on Genymotion Cloud SaaS platform for mobile automation testing.
 
 # This information will be displayed in the orb registry and is not mandatory.
 display:

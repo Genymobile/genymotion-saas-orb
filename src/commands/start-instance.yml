@@ -4,11 +4,12 @@ parameters:
   recipe_uuid:
     type: string
     default: ""
-    description: recipe UUID
+    description: Device template to use. The recipe UUID can be retrieved with command line 'gmsaas recipes list'.
 
   adb_serial_port:
     type: string
     default: ""
+    description: ADB serial port to use when the instance is connected to ADB.
 
 steps:
   - run:

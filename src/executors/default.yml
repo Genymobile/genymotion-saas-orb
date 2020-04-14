@@ -1,5 +1,5 @@
 description: >
-  genymotion-saas orb needs Android so we will use CircleCI's Android convenience image:
+  Android SDK tools are required for this orb, so we will use Circle CI image for Android:
   https://hub.docker.com/r/circleci/android
 
 parameters:

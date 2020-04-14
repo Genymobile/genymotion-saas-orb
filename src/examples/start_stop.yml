@@ -1,6 +1,7 @@
 description: >
-   Easily install and configure the gmsaas CLI automatically in your jobs or commands.
-   Start Android instance, test your app and stop instance on Genymotion Cloud SaaS platform
+   How to :
+   - Configure your Genymotion Cloud SaaS account.
+   - Start Android instance, test your app and stop instance.
 usage:
   version: 2.1
 
@@ -15,8 +16,8 @@ usage:
             email: "${GMCLOUD_SAAS_EMAIL}"
             password: "${GMCLOUD_SAAS_PASSWORD}"
         - genymotion-saas/start-instance:
-            recipe_uuid: "" # Mandatory: Retrieve an recipe uuid using command line gmsaas recipes list.
-            adb_serial_port: "" # Optional: Enter a specific adb serial port here or the default will use a random generated port.
+            recipe_uuid: "" # Mandatory: Retrieve the recipe uuid using 'gmsaas recipes list' command line.
+            adb_serial_port: "" # Optional: Enter a specific adb serial port here otherwise a random port is generated.
         - run: echo "Run your tests here"
         - genymotion-saas/stop-instance:
             instance_uuid: "$INSTANCE_UUID"
