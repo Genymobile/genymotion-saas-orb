@@ -1,7 +1,7 @@
 description: >
    How to :
    - Configure your Genymotion Cloud SaaS account.
-   - Start Android instance, test your app and stop instance.
+   - Start Android instance, connect through ADB with a specific ADB serial port, test your app and stop instance.
 usage:
   version: 2.1
 
@@ -15,5 +15,6 @@ usage:
         - genymotion-saas/setup
         - genymotion-saas/start-instance:
             recipe_uuid: "" # Mandatory: Retrieve the recipe uuid using 'gmsaas recipes list' command line.
+            adb_serial_port: "" # Optional: Enter a specific adb serial port here otherwise a random port is generated.
         - run: echo "Run your tests here"
         - genymotion-saas/stop-instance
