@@ -29,8 +29,8 @@ jobs:
     steps:
       - checkout
       - genymotion-saas/setup:
-          email: "${GMCLOUD_SAAS_EMAIL}"
-          password: "${GMCLOUD_SAAS_PASSWORD}"
+          email: GMCLOUD_SAAS_EMAIL
+          password: GMCLOUD_SAAS_PASSWORD
       - genymotion-saas/start-instance:
           recipe_uuid: "f34de94f-1e85-4d61-9b0d-c47968bc156c"
       - genymotion-saas/stop-instance:
@@ -40,13 +40,10 @@ jobs:
     executor: genymotion-saas/default
     steps:
       - checkout
-      - genymotion-saas/setup:
-          email: "${GMCLOUD_SAAS_EMAIL}"
-          password: "${GMCLOUD_SAAS_PASSWORD}"
+      - genymotion-saas/setup
       - genymotion-saas/start-instance:
           recipe_uuid: "f34de94f-1e85-4d61-9b0d-c47968bc156c"
-      - genymotion-saas/stop-instance:
-          instance_uuid: "$INSTANCE_UUID"
+      - genymotion-saas/stop-instance
 
 workflows:
   # This `lint-pack_validate_publish-dev` workflow will run on any commit.
