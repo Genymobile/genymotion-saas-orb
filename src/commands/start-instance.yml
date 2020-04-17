@@ -10,8 +10,7 @@ parameters:
       for comprehensive list of all currently available recipes UUIDs.
 
   adb_serial_port:
-    type: string
-    default: ""
+    type: integer
     description: ADB serial port to use when the instance is connected to ADB.
 
 steps:
