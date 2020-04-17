@@ -1,7 +1,7 @@
 version: 2.1
 
 description: >
-  Start Genymotion Android virtual device, connect through ADB and stop device on Genymotion Cloud SaaS platform for mobile automation testing.
+  Start Genymotion Android virtual device, connect through ADB and stop device on Genymotion Cloud SaaS for mobile automation testing.
 
 # This information will be displayed in the orb registry and is not mandatory.
 display:

@@ -1,6 +1,6 @@
 # genymotion-saas Orb [![CircleCI Build Status](https://circleci.com/gh/Genymobile/genymotion-saas-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/Genymobile/genymotion-saas-orb) [![CircleCI Orb Version](https://img.shields.io/badge/endpoint.svg?url=https://badges.circleci.io/orb/genymotion/genymotion-saas)](https://circleci.com/orbs/registry/orb/genymotion/genymotion-saas) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/Genymobile/genymotion-saas-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
-Utilize this orb to easily start Genymotion Android virtual device, connect through ADB and stop device on [Genymotion Cloud SaaS platform](https://cloud.geny.io) for mobile automation testing.
+Utilize this orb to easily start Genymotion Android virtual device, connect through ADB and stop device on [Genymotion Cloud SaaS](https://cloud.geny.io) for mobile automation testing.
 
 ## Usage
 

@@ -4,7 +4,10 @@ parameters:
   recipe_uuid:
     type: string
     default: ""
-    description: Device template to use. The recipe UUID can be retrieved with command line 'gmsaas recipes list'.
+    description: | 
+      Instance recipe to use. Recipes can listed with command line 'gmsaas recipes list',
+      or check on https://support.genymotion.com/hc/en-us/articles/360007473658-Supported-Android-devices-templates-for-Genymotion-Cloud-SaaS
+      for comprehensive list of all currently available recipes UUIDs.
 
   adb_serial_port:
     type: string
