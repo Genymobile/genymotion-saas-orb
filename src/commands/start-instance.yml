@@ -25,11 +25,8 @@ steps:
           echo "export INSTANCE_UUID=$INSTANCE_UUID" >> $BASH_ENV
         fi
 
-        if [ -z "<< parameters.adb_serial_port >>" ]; then
-          # Connect Android instance with a random port
-          gmsaas instances adbconnect $INSTANCE_UUID
+        if [ -n "<< parameters.adb_serial_port >>" ]; then
+          port_option="--adb-serial-port << parameters.adb_serial_port >>"
+        endif
 
-        else
-          # Connect Android instance with the specified port
-          gmsaas instances adbconnect $INSTANCE_UUID --adb-serial-port << parameters.adb_serial_port >>
-        fi
+        gmsaas instances adbconnect $INSTANCE_UUID $port_option
