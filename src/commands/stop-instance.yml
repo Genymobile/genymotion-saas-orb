@@ -7,7 +7,7 @@ parameters:
     description: Instance to stop. The UUID of the instance to stop is automatically retrieved. No need to set manually.
 steps:
   - run:
-      name: Stop Instance
+      name: Stop Android instance
       command: |
           gmsaas instances stop << parameters.instance_uuid >>
 

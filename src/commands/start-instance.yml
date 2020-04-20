@@ -11,12 +11,14 @@ parameters:
 
   adb_serial_port:
     type: integer
+    default: -1
     description: ADB serial port to use when the instance is connected to ADB.
 
 steps:
   - run:
       name: Start Android instance
       command: |
+        ADB_SERIAL_PORT="<< parameters.adb_serial_port >>"
         if [ -z "<< parameters.recipe_uuid >>" ]; then
           echo "Please set a recipe uuid"
           exit 1
@@ -25,8 +27,7 @@ steps:
           echo "export INSTANCE_UUID=$INSTANCE_UUID" >> $BASH_ENV
         fi
 
-        if [ -n "<< parameters.adb_serial_port >>" ]; then
-          port_option="--adb-serial-port << parameters.adb_serial_port >>"
-        endif
-
+        if [ "${ADB_SERIAL_PORT}" != "-1" ]; then
+          port_option="--adb-serial-port ${ADB_SERIAL_PORT}"
+        fi
         gmsaas instances adbconnect $INSTANCE_UUID $port_option

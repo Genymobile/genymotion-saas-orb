@@ -33,10 +33,21 @@ jobs:
           password: GMCLOUD_SAAS_PASSWORD
       - genymotion-saas/start-instance:
           recipe_uuid: "f34de94f-1e85-4d61-9b0d-c47968bc156c"
+          adb_serial_port: 12345
       - genymotion-saas/stop-instance:
           instance_uuid: "$INSTANCE_UUID"
 
   integration-test-2:
+    executor: genymotion-saas/default
+    steps:
+      - checkout
+      - genymotion-saas/setup
+      - genymotion-saas/start-instance:
+          recipe_uuid: "f34de94f-1e85-4d61-9b0d-c47968bc156c"
+          adb_serial_port: 12346
+      - genymotion-saas/stop-instance
+
+  integration-test-3:
     executor: genymotion-saas/default
     steps:
       - checkout
@@ -89,6 +100,7 @@ workflows:
       # an example job
       - integration-test-1
       - integration-test-2
+      - integration-test-3
 
       # publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
@@ -105,6 +117,7 @@ workflows:
           requires:
             - integration-test-1
             - integration-test-2
+            - integration-test-3
           filters:
             branches:
               only: master
