@@ -14,7 +14,7 @@ usage:
       steps:
         - genymotion-saas/setup
         - genymotion-saas/start-instance:
-            recipe_uuid: "" # Mandatory: Retrieve the recipe uuid using 'gmsaas recipes list' command line or check on https://support.genymotion.com/hc/en-us/articles/360007473658-Supported-Android-devices-templates-for-Genymotion-Cloud-SaaS for comprehensive list of all currently available recipes UUIDs.
+            recipe_uuid: "" # Mandatory: Retrieve the recipe uuid using 'gmsaas recipes list' command line or check https://support.genymotion.com/hc/en-us/articles/360007473658-Supported-Android-devices-templates-for-Genymotion-Cloud-SaaS for a comprehensive list of all currently available recipes UUIDs.
             adb_serial_port: "" # Optional: Enter a specific adb serial port here otherwise a random port is generated.
         - run: echo "Run your tests here"
         - genymotion-saas/stop-instance
