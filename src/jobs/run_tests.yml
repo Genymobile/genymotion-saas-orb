@@ -1,0 +1,30 @@
+description: Start Android instance, test your app and stop instance.
+
+executor: default
+
+parameters:
+  recipe_uuid:
+    type: string
+    default: ""
+    description: |
+      Instance recipe to use. Recipes can be listed with command line 'gmsaas recipes list',
+      or check https://support.genymotion.com/hc/en-us/articles/360007473658-Supported-Android-devices-templates-for-Genymotion-Cloud-SaaS
+      for a comprehensive list of all currently available recipes UUIDs.
+
+  adb_serial_port:
+    type: integer
+    default: -1
+    description: ADB serial port to use when the instance is connected to ADB.
+
+  steps:
+    type: steps
+    description: Steps to execute once the Genymotion Cloud SaaS instance is available
+
+steps:
+  - checkout
+  - setup
+  - start-instance:
+      recipe_uuid: <<parameters.recipe_uuid>>
+      adb_serial_port: <<parameters.adb_serial_port>>
+  - steps: << parameters.steps >>
+  - stop-instance
