@@ -1,0 +1,33 @@
+description: >
+  Start Android instance on Genymotion Cloud SaaS
+parameters:
+  recipe_uuid:
+    type: string
+    default: ""
+    description: |
+      Instance recipe to use. Recipes can be listed with command line 'gmsaas recipes list',
+      or check https://support.genymotion.com/hc/en-us/articles/360007473658-Supported-Android-devices-templates-for-Genymotion-Cloud-SaaS
+      for a comprehensive list of all currently available recipes UUIDs.
+
+  adb_serial_port:
+    type: integer
+    default: -1
+    description: ADB serial port to use when the instance is connected to ADB.
+
+steps:
+  - run:
+      name: Start Android instance
+      command: |
+        ADB_SERIAL_PORT="<< parameters.adb_serial_port >>"
+        if [ -z "<< parameters.recipe_uuid >>" ]; then
+          echo "Please set a recipe uuid"
+          exit 1
+        else
+          INSTANCE_UUID=$(gmsaas instances start << parameters.recipe_uuid >> CircleCI-device-$CIRCLE_BUILD_NUM )
+          echo "export INSTANCE_UUID=$INSTANCE_UUID" >> $BASH_ENV
+        fi
+
+        if [ "${ADB_SERIAL_PORT}" != "-1" ]; then
+          port_option="--adb-serial-port ${ADB_SERIAL_PORT}"
+        fi
+        gmsaas instances adbconnect $INSTANCE_UUID $port_option
