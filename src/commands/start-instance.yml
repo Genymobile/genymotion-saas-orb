@@ -23,6 +23,7 @@ steps:
           echo "Please set a recipe uuid"
           exit 1
         else
+          export GMSAAS_USER_AGENT_EXTRA_DATA=circleci
           INSTANCE_UUID=$(gmsaas instances start << parameters.recipe_uuid >> CircleCI-device-$CIRCLE_BUILD_NUM )
           echo "export INSTANCE_UUID=$INSTANCE_UUID" >> $BASH_ENV
         fi

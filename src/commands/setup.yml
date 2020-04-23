@@ -31,7 +31,6 @@ steps:
   - run:
       name: Configure gmsaas
       command: |
-        export GMSAAS_USER_AGENT_EXTRA_DATA=circleci
         gmsaas config set android-sdk-path $ANDROID_HOME
   - run:
       name: Authenticate
