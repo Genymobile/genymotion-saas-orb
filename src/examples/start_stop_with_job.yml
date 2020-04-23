@@ -1,0 +1,20 @@
+description: >
+  Easily start and stop Genymotion Cloud Saas instance with a single job supplied by this orb.
+usage:
+  version: 2.1
+
+  orbs:
+    genymotion-saas: genymotion/genymotion-saas@x.y
+
+  workflows:
+    basic_workflow:
+      jobs:
+        - genymotion-saas/run_tests:
+            recipe_uuid: 'c52fdfc2-6914-4266-aa6e-50258f50ef91'
+            steps:
+              - run: echo "run your test here"
+        - genymotion-saas/run_tests:
+            recipe_uuid: 'c52fdfc2-6914-4266-aa6e-50258f50ef91'
+            adb_serial_port: 12345
+            steps:
+              - run: echo "run your test here"
