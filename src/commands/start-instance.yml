@@ -3,7 +3,6 @@ description: >
 parameters:
   recipe_uuid:
     type: string
-    default: ""
     description: |
       Instance recipe to use. Recipes can be listed with command line 'gmsaas recipes list',
       or check https://support.genymotion.com/hc/en-us/articles/360007473658-Supported-Android-devices-templates-for-Genymotion-Cloud-SaaS
