@@ -4,11 +4,11 @@ parameters:
   email:
     type: env_var_name
     default: GMCLOUD_SAAS_EMAIL
-    description: "Email of your Genymotion Cloud SaaS account"
+    description: "Email of your Genymotion Cloud SaaS account. Set this to the name of the environment variable: GMCLOUD_SAAS_EMAIL."
   password:
     type: env_var_name
     default: GMCLOUD_SAAS_PASSWORD
-    description: "Password of your Genymotion Cloud SaaS account"
+    description: "Password of your Genymotion Cloud SaaS account. Set this to the name of the environment variable: GMCLOUD_SAAS_PASSWORD."
   gmsaas_version:
     type: string
     default: ""
