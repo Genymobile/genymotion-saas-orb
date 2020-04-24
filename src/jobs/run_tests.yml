@@ -1,8 +1,13 @@
 description: Start Android instance, test your app and stop instance.
 
-executor: default
-
 parameters:
+  tag:
+    type: string
+    default: api-29
+    description: >
+      Pick a specific circleci/android image tag:
+      https://hub.docker.com/r/circleci/android/tags
+
   recipe_uuid:
     type: string
     default: ""
@@ -19,6 +24,10 @@ parameters:
   steps:
     type: steps
     description: Steps to execute once the Genymotion Cloud SaaS instance is available
+
+executor:
+  name: default
+  tag: <<parameters.tag>>
 
 steps:
   - checkout
