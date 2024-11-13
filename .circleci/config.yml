@@ -29,8 +29,7 @@ jobs:
     steps:
       - checkout
       - genymotion-saas/setup:
-          email: GMCLOUD_SAAS_EMAIL
-          password: GMCLOUD_SAAS_PASSWORD
+          api_token: GMCLOUD_SAAS_APITOKEN
       - genymotion-saas/start-instance:
           recipe_uuid: "f34de94f-1e85-4d61-9b0d-c47968bc156c"
           adb_serial_port: 12345
@@ -91,7 +90,7 @@ workflows:
   # It is meant to be triggered by the "trigger-integration-tests-workflow"
   # job, and run tests on <your orb>@dev:${CIRCLE_SHA1:0:7}.
   integration-tests_prod-release:
-    when: << pipeline.parameters.run-integration-tests >>
+    #when: << pipeline.parameters.run-integration-tests >>
     jobs:
       # your integration test jobs go here: essentially, run all your orb's
       # jobs and commands to ensure they behave as expected. or, run other
