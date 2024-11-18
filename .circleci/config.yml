@@ -4,7 +4,7 @@ version: 2.1
 # release must exist.);
 orbs:
   genymotion-saas: genymotion/genymotion-saas@<<pipeline.parameters.dev-orb-version>>
-  orb-tools: circleci/orb-tools@9.0
+  orb-tools: circleci/orb-tools@10.0
 
 # Pipeline parameters
 parameters:
@@ -90,7 +90,7 @@ workflows:
   # It is meant to be triggered by the "trigger-integration-tests-workflow"
   # job, and run tests on <your orb>@dev:${CIRCLE_SHA1:0:7}.
   integration-tests_prod-release:
-    #when: << pipeline.parameters.run-integration-tests >>
+    when: << pipeline.parameters.run-integration-tests >>
     jobs:
       # your integration test jobs go here: essentially, run all your orb's
       # jobs and commands to ensure they behave as expected. or, run other
