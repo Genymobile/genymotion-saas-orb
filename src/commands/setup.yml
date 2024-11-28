@@ -1,14 +1,10 @@
 description: >
   Download gmsaas cli and authenticate the user.
 parameters:
-  email:
+  api_token:
     type: env_var_name
-    default: GMCLOUD_SAAS_EMAIL
-    description: "Email of your Genymotion Cloud SaaS account. Set this to the name of the environment variable: GMCLOUD_SAAS_EMAIL."
-  password:
-    type: env_var_name
-    default: GMCLOUD_SAAS_PASSWORD
-    description: "Password of your Genymotion Cloud SaaS account. Set this to the name of the environment variable: GMCLOUD_SAAS_PASSWORD."
+    default: GMCLOUD_SAAS_APITOKEN
+    description: "API Token of your Genymotion Cloud SaaS account. Set this to the name of the environment variable: GMCLOUD_SAAS_APITOKEN."
   gmsaas_version:
     type: string
     default: ""
@@ -34,4 +30,6 @@ steps:
         gmsaas config set android-sdk-path $ANDROID_HOME
   - run:
       name: Authenticate
-      command: gmsaas auth login ${<< parameters.email >>} ${<< parameters.password >>}
+      command: |
+        gmsaas auth token ${<< parameters.api_token >>}
+        gmsaas doctor

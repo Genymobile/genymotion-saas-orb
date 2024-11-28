@@ -4,7 +4,7 @@ version: 2.1
 # release must exist.);
 orbs:
   genymotion-saas: genymotion/genymotion-saas@<<pipeline.parameters.dev-orb-version>>
-  orb-tools: circleci/orb-tools@9.0
+  orb-tools: circleci/orb-tools@10.0
 
 # Pipeline parameters
 parameters:
@@ -29,8 +29,7 @@ jobs:
     steps:
       - checkout
       - genymotion-saas/setup:
-          email: GMCLOUD_SAAS_EMAIL
-          password: GMCLOUD_SAAS_PASSWORD
+          api_token: GMCLOUD_SAAS_APITOKEN
       - genymotion-saas/start-instance:
           recipe_uuid: "f34de94f-1e85-4d61-9b0d-c47968bc156c"
           adb_serial_port: 12345
